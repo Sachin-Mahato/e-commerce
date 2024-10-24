@@ -1,12 +1,15 @@
-
+import Category from "./components/Category/Category"
+import { Header } from "./components/Header"
+import Products from "./components/Products/Products"
 
 function App() {
-
-  return (
-    <>
-        <p className="bg-green-700 text-white">Hello from the e-commerce project</p>  
-    </>
-  )
+    return (
+        <main className="mx-4">
+            <Header />
+            <Category />
+            <Products />
+        </main>
+    )
 }
 
 export default App
