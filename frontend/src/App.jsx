@@ -1,14 +1,28 @@
-import Category from "./components/Category/Category"
-import { Header } from "./components/Header"
-import Products from "./components/Products/Products"
-
+import { Header, Category, Products, Footer, Cart } from "./components/index.js"
+import { Route, Routes } from "react-router-dom"
 function App() {
     return (
-        <main className="mx-4">
-            <Header />
-            <Category />
-            <Products />
-        </main>
+        <Routes>
+            <Route path="/" element={
+                <>
+
+                    <Header />
+                    <Category />
+                    <Products />
+                    <Footer />
+                </>
+            }
+            />
+
+            <Route path="/cart" element={
+                <>
+                    <Header />
+                    <Cart />
+                    <Footer />
+                </>
+            } />
+
+        </Routes>
     )
 }
 

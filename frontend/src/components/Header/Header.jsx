@@ -1,11 +1,10 @@
 import { Logo } from "./Logo"
-import Accordion from "./Accordion"
-
+import HamburgerMenu from "./Accordion"
 const Header = () => {
     return (
         <nav className="flex justify-between my-7 ">
             <Logo />
-            <Accordion />
+            <HamburgerMenu />
         </nav>
     )
 }
