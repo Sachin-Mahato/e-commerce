@@ -6,7 +6,7 @@ const HamburgerMenu = () => {
 
     return (
         <div className="relative">
-            <button type="button" className="absolute top-4 right-4 z-50" onClick={toggleClickHandler}>
+            <button type="button" className="absolute right-4 z-50" onClick={toggleClickHandler}>
                 <HamburgerIcon />
             </button>
             <div

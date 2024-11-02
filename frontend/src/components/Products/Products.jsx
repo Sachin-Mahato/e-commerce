@@ -1,44 +1,17 @@
-import { useState, useEffect } from "react";
-import { fetchAllProducts } from "../../utils/fetchData";
-import HeartIcon from "./HeartIcon";
 import useGlobalContext from "../../context/globalContext"
-
 const Products = () => {
-    const [items, setItems] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
-    const { addToCart } = useGlobalContext();
-
-    useEffect(() => {
-        (async () => {
-            try {
-                const getAllItems = await fetchAllProducts();
-                setItems(getAllItems);
-            } catch (error) {
-                setError("Failed to fetch products")
-                console.error("Failed to fetch products:", error);
-            } finally {
-                setLoading(false);
-            }
-        })();
-    }, []);
-
+    const {cart, loading, addToCart} = useGlobalContext()
 
     if (loading) {
         return <p>Loading products...</p>; // Loading state
     }
 
-    if (error) {
-        return <p>{error}</p>; // Error handling
-    }
-
-
-
     return (
         <section className="grid grid-cols-2 gap-4 mt-[7.5em]">
-            {items.length > 0 ? (
-                items.slice(0, 8).map((item) => (
-                    <div key={item.id} className="flex flex-col justify-around items-center  w-[162px] h-[352px] bg-[#F6F6F6]">
+            {cart.length > 0 ? (
+                cart.slice(0, 8).map((item, idx) => (
+
+                    <div key={idx} className="flex flex-col justify-around items-center  w-[162px] h-[352px] bg-[#F6F6F6]">
                         <div className="w-full flex justify-end mr-4 cursor-pointer">
                             <HeartIcon />
                         </div>
@@ -48,16 +21,39 @@ const Products = () => {
                             <p>No image available</p>
                         )}
                         <p>{item.title}</p>
-                        <p>{`$ ${item.price}`}</p>
-                        <button onClick={() => addToCart(item)} type="button" className="bg-black text-white capitalize w-32 h-12 rounded-md font-medium cursor-pointer">Buy Now</button>
+                        <p>{item.price}</p>
+                        <button onClick={() => addToCart(item.id)} type="button" className="bg-black text-white capitalize w-32 h-12 rounded-md font-medium cursor-pointer">Buy Now</button>
                     </div>
                 ))
             ) : (
                 <p>No products available</p> // Fallback message if no items
             )}
+            <p>loading all products</p>
         </section>
     );
+
 }
 
-export default Products;
 
+function HeartIcon() {
+    return (
+        <div>
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="size-6"
+            >
+                <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
+                />
+            </svg>
+        </div>
+    );
+};
+
+export default Products;

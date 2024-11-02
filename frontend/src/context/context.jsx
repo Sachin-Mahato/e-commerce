@@ -1,40 +1,37 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useReducer, useState } from "react";
+import reducer from "./reducer.js";
+import fetchAllProducts from "../utils/fetchData.js";
 const AppContext = createContext();
 
-const AppContextProvider = ({ children }) => {
-    const storeItems = JSON.parse(localStorage.getItem('cart')) || [];
-    const [isMenuOpen, SetIsMenuOpen] = useState(false);
-    const [cart, setCart] = useState(storeItems);
+const initialState = {
+    loading: false,
+    cart: await fetchAllProducts(),
+    items: [],
+}
 
+const AppContextProvider = ({ children }) => {
+    const [state, dispatch] = useReducer(reducer, initialState);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const clearCart = () => {
+        dispatch({ type: 'CLEAR_CART' })
+    }
+
+    const removeItem = (id) => {
+        dispatch({ type: 'REMOVE', payload: id })
+    }
+
+    const addToCart = (id) => {
+        dispatch({ type: 'ADD_TO_CART', payload: id })
+
+    }
 
     const toggleClickHandler = () => {
-        SetIsMenuOpen((current) => !current);
+        setIsMenuOpen((prev) => !prev)
     }
 
 
-    const addToCart = (item) => {
-        console.log(item)
-        setCart((prevCart) => {
-            const itemExist = prevCart.filter((product) => product.id === item.id);
-            if (!itemExist) {
-                const updatedCart = [...prevCart, item];
-
-                // Update localStorage with the new cart
-                localStorage.setItem('cart', JSON.stringify(updatedCart));
-                console.log(updatedCart)
-                return updatedCart; // Return the updated cart
-            }
-            return prevCart;
-        })
-    }
-
-    useEffect(() => {
-        localStorage.setItem('cart', JSON.stringify(cart))
-    }, [cart])
-
-
-
-    return <AppContext.Provider value={{ isMenuOpen, toggleClickHandler, cart, addToCart }}>
+    return <AppContext.Provider value={{ ...state, clearCart, removeItem, addToCart, isMenuOpen, toggleClickHandler }}>
         {children}
     </AppContext.Provider>
 }
