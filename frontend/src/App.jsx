@@ -1,4 +1,4 @@
-import { Header, Category, Products, Footer, Cart } from "./components/index.js"
+import { Header, Category, Products, Footer, Cart, OrderSummary, Wishlist } from "./components/index.js"
 import { Route, Routes } from "react-router-dom"
 function App() {
     return (
@@ -18,6 +18,15 @@ function App() {
                 <>
                     <Header />
                     <Cart />
+                    <OrderSummary />
+                    <Footer />
+                </>
+            } />
+
+            <Route path="/wishlist" element={
+                <>
+                    <Header /> 
+                    <Wishlist />
                     <Footer />
                 </>
             } />

@@ -1,4 +1,4 @@
-import Neck from "../../../img/necklace.png"
+import Neck from "../../img/necklace.png"
 
 const Necklace = () => {
   return (

@@ -1,4 +1,4 @@
-import MenImage from "../../../img/shirt.png"
+import MenImage from "../../img/shirt.png"
 
 
 const Mens = () => {

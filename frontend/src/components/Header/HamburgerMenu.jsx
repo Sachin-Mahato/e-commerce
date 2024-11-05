@@ -1,5 +1,7 @@
-import AddToCart from "../Cart/AddToCart";
-import useGlobalContext from "../../context/globalContext";
+import CartLink from "../Cart/CartLink.jsx";
+import useGlobalContext from "../../context/globalContext.jsx";
+import {HamburgerIcon} from "../../img/icons/index.js";
+import WishlistLink from "../Cart/WishlistLink.jsx";
 
 const HamburgerMenu = () => {
     const { isMenuOpen, toggleClickHandler } = useGlobalContext()
@@ -14,7 +16,8 @@ const HamburgerMenu = () => {
                     }`}
             >
                 <div href="/cart" className="block text-xl p-4 mt-20 text-white font-semibold">
-                    <AddToCart />
+                    <CartLink />
+                    <WishlistLink />
                 </div>
             </div>
         </div>
@@ -22,23 +25,6 @@ const HamburgerMenu = () => {
 };
 
 
-function HamburgerIcon() {
-    return (
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="size-8"
-        >
-            <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-            />
-        </svg>
-    )
-}
+
 
 export default HamburgerMenu;

@@ -1,4 +1,4 @@
-import { Arrow } from "./icons/index"
+import { Arrow } from "../../img/icons/index.js"
 import { CategoryTitle } from "./CategoryTitle"
 import CategoryIcons from "./CategoryIcons"
 

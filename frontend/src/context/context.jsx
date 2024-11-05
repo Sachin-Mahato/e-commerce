@@ -1,4 +1,4 @@
-import { createContext, useReducer, useState } from "react";
+import { createContext, useEffect, useReducer, useState } from "react";
 import reducer from "./reducer.js";
 import fetchAllProducts from "../utils/fetchData.js";
 const AppContext = createContext();
@@ -7,6 +7,9 @@ const initialState = {
     loading: false,
     cart: await fetchAllProducts(),
     items: [],
+    wishlist: [],
+    total: 0,
+    quantity: 0
 }
 
 const AppContextProvider = ({ children }) => {
@@ -26,12 +29,26 @@ const AppContextProvider = ({ children }) => {
 
     }
 
+    const increaseQuantity = (id) => {
+        dispatch({type: 'INCREASE_QUANTITY', payload: id })
+    }
+
+    const decreaseQuantity = (id) => {
+        dispatch({type: 'DECREASE_QUANTITY', payload: id })
+    }
     const toggleClickHandler = () => {
         setIsMenuOpen((prev) => !prev)
     }
 
+    const wishlistHandler = (id) => {
+        dispatch({type: "WISHLIST", payload: id})
+    }
 
-    return <AppContext.Provider value={{ ...state, clearCart, removeItem, addToCart, isMenuOpen, toggleClickHandler }}>
+    useEffect(() => {
+        dispatch({type: 'TOTAL'})
+    }, [state.items])
+
+    return <AppContext.Provider value={{ ...state, clearCart, removeItem, addToCart, isMenuOpen, toggleClickHandler , increaseQuantity, decreaseQuantity , wishlistHandler}}>
         {children}
     </AppContext.Provider>
 }

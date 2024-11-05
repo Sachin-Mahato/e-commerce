@@ -1,6 +1,6 @@
 import FooterLogo from "./FooterLogo"
 import Services from "./Services"
-import SocialMedia from "./socialMedia/socialMedia"
+import { SocialMedia } from "../../img/icons/index.js"
 import Assistance from "./Assistance"
 
 const Footer = () => {

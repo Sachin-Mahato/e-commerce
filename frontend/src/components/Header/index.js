@@ -1,6 +1,6 @@
 import Header from "./Header";
 import { Logo } from "./Logo";
-import Accordion from "./Accordion";
+import Accordion from "./HamburgerMenu";
 
 export {
     Header,

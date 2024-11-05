@@ -1,4 +1,4 @@
-import { Mens, Women, Electronics, Necklace } from "./icons/index.js";
+import { Mens, Women, Electronics, Necklace } from "../../img/icons/index.js";
 
 const CategoryIcons = () => {
     return (

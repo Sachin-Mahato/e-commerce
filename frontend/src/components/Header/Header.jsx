@@ -1,5 +1,5 @@
 import { Logo } from "./Logo"
-import HamburgerMenu from "./Accordion"
+import HamburgerMenu from "./HamburgerMenu"
 const Header = () => {
     return (
         <nav className="flex justify-between my-7 ">

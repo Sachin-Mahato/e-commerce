@@ -1,4 +1,4 @@
-import WomenImg from "../../../img/skirt.png"
+import WomenImg from "../../img/skirt.png"
 
 
 const Women = () => {

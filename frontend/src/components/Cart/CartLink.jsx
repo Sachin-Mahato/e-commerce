@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import useGlobalContext from "../../context/globalContext"
 
-const AddToCart = () => {
+const CartLink = () => {
     const { isMenuOpen } = useGlobalContext();
 
     return (
@@ -18,4 +18,4 @@ const AddToCart = () => {
     )
 }
 
-export default AddToCart
+export default CartLink
