@@ -6,6 +6,7 @@ import AddToCart from "./Cart/CartLink";
 import Cart from "./Cart/Cart";
 import OrderSummary from "./Cart/OderSummary"
 import Wishlist from "./Cart/Wishlist";
+import AllProducts from "./Products/AllProducts";
 
 export {
     Category,
@@ -15,5 +16,6 @@ export {
     AddToCart,
     Cart ,
     OrderSummary,
-    Wishlist
+    Wishlist,
+    AllProducts
 }

@@ -1,5 +1,5 @@
 
-const Assistance = () => {
+function Assistance() {
     return (
         <section>
             <h2 className="text-white font-semibold text-center mt-8 mb-2">Assistance to the buyer</h2>

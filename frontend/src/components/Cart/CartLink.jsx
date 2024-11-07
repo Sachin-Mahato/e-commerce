@@ -1,15 +1,17 @@
 import { Link } from "react-router-dom";
 import useGlobalContext from "../../context/globalContext"
+import { CartIcon } from "../../img/icons/index.js";
 
-const CartLink = () => {
+function CartLink() {
     const { isMenuOpen } = useGlobalContext();
 
     return (
         <>
             {isMenuOpen && (
                 <Link to="/cart">
-                    <div>
-                        <span>Cart</span>
+                    <div className="flex gap-4 items-center">
+                        <p>Cart</p>
+                        <CartIcon />
                     </div>
                 </Link>
             )}

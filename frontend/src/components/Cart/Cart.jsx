@@ -3,9 +3,9 @@ import id from "../../utils/generateRandomString";
 import randomNumbers from "../../utils/randomNumbers.js"
 import {Minus, Plus, Close} from "../../img/icons/index.js";
 
-const Cart = () => {
+function Cart() {
     const { items } = useGlobalContext();
-    const orderId =  randomNumbers();
+    let orderId =  randomNumbers();
     return (
         <>
             <section className="flex flex-col gap-4 justify-around">

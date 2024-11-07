@@ -1,6 +1,6 @@
 import useGlobalContext from "../../context/globalContext";
 
-const OderSummary = () => {
+function OderSummary() {
 
     const {total} = useGlobalContext()
     const tax = (total * 1) / 100;

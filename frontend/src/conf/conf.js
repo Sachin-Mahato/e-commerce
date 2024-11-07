@@ -1,4 +1,4 @@
-const conf = {
+var conf = {
     allProductsUrl : String(import.meta.VITE_ALL_PRODUCTS_URL)
 }
 

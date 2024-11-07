@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import LogoImage from "../../img/Logo.png"
 
-export const Logo = () => {
+export function Logo() {
     const navigate = useNavigate()
     return (
         <div onClick={() => navigate("/")}>

@@ -2,7 +2,7 @@ import { Arrow } from "../../img/icons/index.js"
 import { CategoryTitle } from "./CategoryTitle"
 import CategoryIcons from "./CategoryIcons"
 
-const Category = () => {
+function Category(){
     return (
         <>
             <section className="flex justify-between">

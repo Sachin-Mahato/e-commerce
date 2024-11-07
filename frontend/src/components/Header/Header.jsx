@@ -1,6 +1,6 @@
 import { Logo } from "./Logo"
 import HamburgerMenu from "./HamburgerMenu"
-const Header = () => {
+function Header() {
     return (
         <nav className="flex justify-between my-7 ">
             <Logo />

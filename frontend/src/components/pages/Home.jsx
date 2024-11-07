@@ -1,5 +1,5 @@
 import { Header, Category, Products } from "../index.js"
-const Home = () => {
+function Home() {
     return (
             <div className="mx-4">
                 <Header />

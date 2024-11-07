@@ -1,5 +1,5 @@
 
-const Services = () => {
+function Services() {
   return (
     <section>
         <h2 className="font-semibold text-white text-center mt-8 mb-2">Services</h2>

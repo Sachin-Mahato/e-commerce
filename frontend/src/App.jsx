@@ -1,5 +1,6 @@
-import { Header, Category, Products, Footer, Cart, OrderSummary, Wishlist } from "./components/index.js"
 import { Route, Routes } from "react-router-dom"
+import { Header, Category, Products, Footer, Cart, OrderSummary, Wishlist ,AllProducts} from "./components/index.js"
+
 function App() {
     return (
         <Routes>
@@ -27,6 +28,14 @@ function App() {
                 <>
                     <Header /> 
                     <Wishlist />
+                    <Footer />
+                </>
+            } />
+
+            <Route path="/products" element={
+                <>
+                    <Header /> 
+                    <AllProducts />
                     <Footer />
                 </>
             } />

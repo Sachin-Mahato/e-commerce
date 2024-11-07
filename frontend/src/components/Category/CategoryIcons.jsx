@@ -1,8 +1,8 @@
 import { Mens, Women, Electronics, Necklace } from "../../img/icons/index.js";
 
-const CategoryIcons = () => {
+function CategoryIcons() {
     return (
-        <div className="grid grid-cols-2 gap-4 mt-12">
+        <div className="grid grid-cols-2 place-items-center gap-4 mt-12">
 
             <div className="w-[162px] h-32 bg-[#EDEDED] flex justify-center items-center rounded-lg">
                 <Mens />

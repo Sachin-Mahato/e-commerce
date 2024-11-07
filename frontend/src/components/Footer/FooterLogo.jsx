@@ -1,6 +1,6 @@
 import footerImg from "../../img/Logo.png";
 
-const FooterLogo = () => {
+function FooterLogo() {
     return (
         <div className="mt-12">
             <div className="flex justify-center items-center filter-[invert(100%)]">

@@ -15,6 +15,9 @@ import Twitter from "./Twitter";
 import Women from "./Women";
 import HamburgerIcon from "./HamburgerIcon";
 import HeartIcon from "./HeartIcon";
+import CartIcon from "./CartIcon"
+import ChevronDownIcon from "./ChevronDownIcon";
+import FilterIcon from "./filterIcon";
 
 export {
     Arrow,
@@ -34,4 +37,7 @@ export {
     Women,
     HamburgerIcon,
     HeartIcon,
+    CartIcon,
+    ChevronDownIcon,
+    FilterIcon
 }

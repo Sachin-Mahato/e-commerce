@@ -3,7 +3,7 @@ import Services from "./Services"
 import { SocialMedia } from "../../img/icons/index.js"
 import Assistance from "./Assistance"
 
-const Footer = () => {
+function Footer() {
     return (
         <footer className="bg-[#181313] ml-0 mr-0 pb-12">
             <FooterLogo />

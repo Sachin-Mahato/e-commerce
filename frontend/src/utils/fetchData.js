@@ -1,4 +1,4 @@
-const fetchAllProducts = async () => {
+async function fetchAllProducts() {
    const response = await fetch("https://fakestoreapi.com/products");
    try {
       if (!response.ok) {
