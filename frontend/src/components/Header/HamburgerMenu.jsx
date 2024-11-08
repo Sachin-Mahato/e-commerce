@@ -5,10 +5,10 @@ import WishlistLink from "../Cart/WishlistLink.jsx";
 import AllProductsLink from "../Products/AllProductsLink.jsx";
 
 function HamburgerMenu() {
-    const { isMenuOpen, toggleClickHandler } = useGlobalContext()
+    var { isMenuOpen, toggleClickHandler } = useGlobalContext()
 
     return (
-        <div className="relative">
+        <div className="relative ">
             <button type="button" className="absolute right-4 z-50" onClick={toggleClickHandler}>
                 <HamburgerIcon />
             </button>

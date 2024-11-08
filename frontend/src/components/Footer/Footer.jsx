@@ -6,9 +6,12 @@ import Assistance from "./Assistance"
 function Footer() {
     return (
         <footer className="bg-[#181313] ml-0 mr-0 pb-12">
-            <FooterLogo />
-            <Services />
-            <Assistance />
+            <div className="mobile:flex mobile:justify-between mobile:mx-40">
+
+                <FooterLogo />
+                <Services />
+                <Assistance />
+            </div>
             <SocialMedia />
         </footer>
     )

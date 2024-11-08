@@ -1,6 +1,6 @@
 
 export function CategoryTitle() {
   return (
-    <h2 className="capitalize text-xl">browse by category</h2>
+    <h2 className="capitalize text-xl font-semibold">browse by category</h2>
   )
 }

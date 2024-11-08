@@ -9,6 +9,10 @@ export default {
         extend: {
             transitionTimingFunction: {
                 'custom-cubic': 'cubic-bezier(0.25, 0.1, 0.25, 1)' 
+            },
+            screens: {
+                'desktop': '80em',
+                'mobile': '40em'
             }
         },
     },

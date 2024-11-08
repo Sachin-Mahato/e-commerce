@@ -1,7 +1,7 @@
 import useGlobalContext from "../../context/globalContext"
 import { Link } from "react-router-dom"
 function WishlistLink() {
-    const { isMenuOpen } = useGlobalContext()
+    var { isMenuOpen } = useGlobalContext()
 
     return (
         <>

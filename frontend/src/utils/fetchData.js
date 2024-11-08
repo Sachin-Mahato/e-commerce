@@ -1,10 +1,11 @@
 async function fetchAllProducts() {
-   const response = await fetch("https://fakestoreapi.com/products");
+   const url = "https://fakestoreapi.com/products"
+   let response = await fetch(url);
    try {
       if (!response.ok) {
          throw new Error(`error in fetching response object`);
       }
-      const data = await response.json();
+      let data = await response.json();
       return data;
    } catch (error) {
       console.log(`error in fetching all products ${error}`)

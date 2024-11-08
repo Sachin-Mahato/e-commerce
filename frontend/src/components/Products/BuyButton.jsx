@@ -1,7 +1,7 @@
 import useGlobalContext from "../../context/globalContext"
 
 function BuyButton({itemId}) {
-    const {addToCart} = useGlobalContext();
+    var {addToCart} = useGlobalContext();
 
     return (
         <>

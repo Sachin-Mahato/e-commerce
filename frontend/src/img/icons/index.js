@@ -18,6 +18,7 @@ import HeartIcon from "./HeartIcon";
 import CartIcon from "./CartIcon"
 import ChevronDownIcon from "./ChevronDownIcon";
 import FilterIcon from "./filterIcon";
+import UserIcon from "./UserIcon";
 
 export {
     Arrow,
@@ -39,5 +40,7 @@ export {
     HeartIcon,
     CartIcon,
     ChevronDownIcon,
-    FilterIcon
+    FilterIcon,
+    UserIcon,
+
 }

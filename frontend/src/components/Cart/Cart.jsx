@@ -4,7 +4,7 @@ import randomNumbers from "../../utils/randomNumbers.js"
 import {Minus, Plus, Close} from "../../img/icons/index.js";
 
 function Cart() {
-    const { items } = useGlobalContext();
+    var { items } = useGlobalContext();
     let orderId =  randomNumbers();
     return (
         <>

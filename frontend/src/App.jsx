@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom"
-import { Header, Category, Products, Footer, Cart, OrderSummary, Wishlist ,AllProducts} from "./components/index.js"
+import { Header, Category, Products, Footer, Cart, OrderSummary, Wishlist, AllProducts } from "./components/index.js"
+import FilterByPrice from "./components/Products/FilterByPrice.jsx"
 
 function App() {
     return (
@@ -26,7 +27,7 @@ function App() {
 
             <Route path="/wishlist" element={
                 <>
-                    <Header /> 
+                    <Header />
                     <Wishlist />
                     <Footer />
                 </>
@@ -34,14 +35,23 @@ function App() {
 
             <Route path="/products" element={
                 <>
-                    <Header /> 
+                    <Header />
                     <AllProducts />
                     <Footer />
                 </>
             } />
 
+            <Route path="/products/:filter" element={<>
+
+                <Header />
+                <FilterByPrice />
+                <Footer />
+            </>} />
+
         </Routes>
     )
 }
+
+
 
 export default App

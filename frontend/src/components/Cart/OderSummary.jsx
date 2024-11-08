@@ -2,7 +2,7 @@ import useGlobalContext from "../../context/globalContext";
 
 function OderSummary() {
 
-    const {total} = useGlobalContext()
+    var {total} = useGlobalContext()
     const tax = (total * 1) / 100;
     const shippingCost = (total * 5) / 100;
     const totalCost = (tax+ shippingCost + total).toFixed(2);

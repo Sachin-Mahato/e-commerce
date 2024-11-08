@@ -6,7 +6,7 @@ import FilterButton from "./FilterButton.jsx";
 import ByRatingButton from "./ByRatingButton.jsx";
 
 function AllProducts() {
-    const { cart, loading } = useGlobalContext()
+    var { cart, loading } = useGlobalContext()
 
     if (loading) {
         return <p>Loading products...</p>; // Loading state

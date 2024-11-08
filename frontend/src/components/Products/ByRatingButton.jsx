@@ -1,7 +1,7 @@
 import useGlobalContext from "../../context/globalContext";
 
 function ByRatingButton() {
-    var { sortByPopularity , selectRef, selectValue, selectClickHandler } = useGlobalContext();
+    var { sortByPopularity , selectRef, selectClickHandler } = useGlobalContext();
 
     return (
         <div className="flex justify-around py-2 rounded-md border-[#ebebeb] border-[1px] border-solid">
@@ -20,7 +20,6 @@ function ByRatingButton() {
                 <option value="popularity">popularity</option>
                 <option value="relevance">relevance</option>
             </select>
-            <p>sel: {selectValue}</p>
         </div>
     )
 }

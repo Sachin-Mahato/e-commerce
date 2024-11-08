@@ -2,7 +2,7 @@ import useGlobalContext from "../../context/globalContext";
 import id from "../../utils/generateRandomString";
 
 function Wishlist() {
-    const { wishlist } = useGlobalContext()
+    var { wishlist } = useGlobalContext()
     return (
         <section>
             <h2 className="font-semibold text-3xl text-gray-900 mb-6 mt-4 tracking-wide">

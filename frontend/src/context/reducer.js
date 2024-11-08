@@ -18,7 +18,7 @@ function reducer(state, action) {
     }
     // Add to cart
     if (action.type === "ADD_TO_CART") {
-        const findItem = state["cart"]?.find((item) => {
+        let findItem = state["cart"]?.find((item) => {
             item["quantity"] = 1;
             if (item.id == action.payload) {
                 return item;
@@ -94,7 +94,7 @@ function reducer(state, action) {
     // Wishlist
 
     if (action.type == "WISHLIST") {
-        const findWishlistItems = state["cart"].find((item) => {
+        let findWishlistItems = state["cart"].find((item) => {
             if (item.id == action.payload) {
                 return item;
             }

@@ -21,36 +21,36 @@ function AppContextProvider  ({ children })  {
     var [selectValue, setSelectValue] = useState("");
     var selectRef = useRef();
 
-    const clearCart = () => {
+    function clearCart() {
         dispatch({ type: 'CLEAR_CART' })
     }
 
-    const removeItem = (id) => {
+    function removeItem(id) {
         dispatch({ type: 'REMOVE', payload: id })
     }
 
-    const addToCart = (id) => {
+    function addToCart(id) {
         dispatch({ type: 'ADD_TO_CART', payload: id })
 
     }
 
-    const increaseQuantity = (id) => {
+    function increaseQuantity(id) {
         dispatch({type: 'INCREASE_QUANTITY', payload: id })
     }
 
-    const decreaseQuantity = (id) => {
+    function decreaseQuantity(id) {
         dispatch({type: 'DECREASE_QUANTITY', payload: id })
     }
-    const toggleClickHandler = () => {
+    function toggleClickHandler() {
         setIsMenuOpen((prev) => !prev)
     }
 
-    const wishlistHandler = (id) => {
+    function wishlistHandler(id) {
         setIsSet((prev) => !prev)
         dispatch({type: "WISHLIST", payload: id})
     }
 
-    const sortByPopularity = (value) => {
+    function sortByPopularity(value) {
         dispatch({type: "POPULARITY_SORT", payload: value} )
     }
 

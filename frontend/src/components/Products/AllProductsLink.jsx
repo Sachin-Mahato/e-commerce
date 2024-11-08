@@ -2,7 +2,7 @@ import useGlobalContext from "../../context/globalContext";
 import { Link } from "react-router-dom";
 
 function AllProductsLink() {
-    const {isMenuOpen} = useGlobalContext();
+    var {isMenuOpen} = useGlobalContext();
     return (
         <>
 

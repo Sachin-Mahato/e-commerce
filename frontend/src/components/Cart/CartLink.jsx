@@ -3,7 +3,7 @@ import useGlobalContext from "../../context/globalContext"
 import { CartIcon } from "../../img/icons/index.js";
 
 function CartLink() {
-    const { isMenuOpen } = useGlobalContext();
+    var { isMenuOpen } = useGlobalContext();
 
     return (
         <>
