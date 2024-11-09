@@ -123,6 +123,12 @@ function reducer(state, action) {
         if (action.payload == "") {
             state["cart"].sort((x,y) => x.rating?.rate - y.rating?.rate)
         }
+        if (action.payload == "low-to-high") {
+            state["cart"].sort((x,y) => x.price - y.price)
+        }
+        if (action.payload == "high-to-low") {
+            state["cart"].sort((x,y) => y.price - x.price)
+        }
     }
 
     return state;

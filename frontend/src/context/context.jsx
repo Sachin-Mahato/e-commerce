@@ -1,6 +1,6 @@
 import { createContext, useEffect, useReducer, useRef, useState } from "react";
 import reducer from "./reducer.js";
-import fetchAllProducts from "../utils/fetchData.js";
+import fetchAllProducts from "../service/fetchData.js";
 
 
 var AppContext = createContext();
