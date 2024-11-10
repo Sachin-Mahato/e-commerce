@@ -10,7 +10,6 @@ import { useState } from "react";
 function AllProducts() {
     var { cart, loading } = useGlobalContext()
     var [toggle, setToggle] = useState(false);
-    console.log(cart)
 
     function toggleClickHandler() {
         setToggle((prev) => !prev)

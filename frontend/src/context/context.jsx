@@ -17,9 +17,9 @@ var initialState = {
 function AppContextProvider  ({ children })  {
     var [state, dispatch] = useReducer(reducer, initialState);
     var [isMenuOpen, setIsMenuOpen] = useState(false);
-    var [isSet, setIsSet] = useState(false);
     var [selectValue, setSelectValue] = useState("");
     var selectRef = useRef();
+    var wishlistRef = useRef();
 
     function clearCart() {
         dispatch({ type: 'CLEAR_CART' })
@@ -27,6 +27,10 @@ function AppContextProvider  ({ children })  {
 
     function removeItem(id) {
         dispatch({ type: 'REMOVE', payload: id })
+    }
+
+    function removeItemFromWishlist(id) {
+        dispatch({type: 'REMOVE_ITEM_WISHLIST', payload:id})
     }
 
     function addToCart(id) {
@@ -41,12 +45,12 @@ function AppContextProvider  ({ children })  {
     function decreaseQuantity(id) {
         dispatch({type: 'DECREASE_QUANTITY', payload: id })
     }
+
     function toggleClickHandler() {
         setIsMenuOpen((prev) => !prev)
     }
 
     function wishlistHandler(id) {
-        setIsSet((prev) => !prev)
         dispatch({type: "WISHLIST", payload: id})
     }
 
@@ -62,7 +66,7 @@ function AppContextProvider  ({ children })  {
         dispatch({type: 'TOTAL'})
     }, [state.items])
 
-    return <AppContext.Provider value={{ ...state, clearCart, removeItem, addToCart, isMenuOpen,isSet, toggleClickHandler , increaseQuantity, decreaseQuantity , wishlistHandler, sortByPopularity, selectValue, selectRef, selectClickHandler}}>
+    return <AppContext.Provider value={{ ...state, clearCart, removeItem, addToCart, isMenuOpen, toggleClickHandler , increaseQuantity, decreaseQuantity , wishlistHandler, sortByPopularity, selectValue, selectRef, selectClickHandler, removeItemFromWishlist, wishlistRef}}>
         {children}
     </AppContext.Provider>
 }

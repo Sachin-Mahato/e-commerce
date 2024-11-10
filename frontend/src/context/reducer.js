@@ -16,6 +16,13 @@ function reducer(state, action) {
             items: state.items.filter((item) => item.id !== action.payload),
         };
     }
+    // remove item from wishlist
+    if (action.type == "REMOVE_ITEM_WISHLIST") {
+        return {
+            ...state,
+            wishlist: state.wishlist.filter((item) => item.id != action.payload)
+        }
+    }
     // Add to cart
     if (action.type === "ADD_TO_CART") {
         let findItem = state["cart"]?.find((item) => {

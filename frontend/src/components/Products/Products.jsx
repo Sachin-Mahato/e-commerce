@@ -25,9 +25,12 @@ function Products() {
                         ) : (
                             <p>No image available</p>
                         )}
-                        <p>{item.title}</p>
+                        <p className="">{item.title}</p>
                         <p>${item.price}</p>
-                        <BuyButton itemId={item.id} />
+                        <div>
+
+                            <BuyButton itemId={item.id} />
+                        </div>
                     </div>
                 ))
             ) : (

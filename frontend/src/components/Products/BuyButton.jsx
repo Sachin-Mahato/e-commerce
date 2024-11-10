@@ -16,7 +16,7 @@ function BuyButton({itemId}) {
                 before:transition-all before:duration-500 before:ease-[cubic-bezier(0,1,.3,1)] 
                 after:transition-all after:duration-500 after:ease-[cubic-bezier(0,1,.3,1)]"
             >
-                Buy Now</button>
+                 Add to cart</button>
         </>
     )
 }

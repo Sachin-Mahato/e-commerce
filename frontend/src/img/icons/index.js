@@ -19,6 +19,7 @@ import CartIcon from "./CartIcon"
 import ChevronDownIcon from "./ChevronDownIcon";
 import FilterIcon from "./filterIcon";
 import UserIcon from "./UserIcon";
+import Trash from "./Trash";
 
 export {
     Arrow,
@@ -42,5 +43,5 @@ export {
     ChevronDownIcon,
     FilterIcon,
     UserIcon,
-
+    Trash,
 }
