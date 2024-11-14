@@ -7,11 +7,11 @@ var AppContext = createContext();
 
 var initialState = {
     loading: false,
-    cart: await fetchAllProducts(),
+    cart: (async () => await fetchAllProducts())(),
     items: [],
     wishlist: [],
-    filterAllItems: await fetchAllProducts(),
-    filterCategory: await fetchAllProducts(),
+    filterAllItems:(async () => await fetchAllProducts())(),
+    filterCategory: (async () => await fetchAllProducts())(),
     total: 0,
     quantity: 0
 }
