@@ -10,6 +10,8 @@ var initialState = {
     cart: await fetchAllProducts(),
     items: [],
     wishlist: [],
+    filterAllItems: await fetchAllProducts(),
+    filterCategory: await fetchAllProducts(),
     total: 0,
     quantity: 0
 }
@@ -64,21 +66,36 @@ function AppContextProvider({ children }) {
         setSelectValue(selectRef.current.value)
     }
 
-    function sliceByPrice() {
-        setRange(priceRef.current.value)
+    function sliceByPrice(evt) {
+        var selectVal = evt.target.value;
+        setRange(selectVal)
+        dispatch({ type: "SLICE_ITEMS", payload: selectVal })
     }
 
-    useEffect(() => {
-        // sliceByPrice()
-        dispatch({type: "SLICE_ITEMS", payload: priceRef.current.value})
-    },[state.cart])
+    function selectCategory(evt) {
+        var selectCate = evt.target.textContent.trim().toLowerCase();
+        if (selectCate == "all") {
+            dispatch({ type: "SELECT_CATEGORY", payload: "all" })
+        } else {
+
+            dispatch({ type: "SELECT_CATEGORY", payload: selectCate })
+        }
+    }
+    // extract min and max price
+
+
+
+    // useEffect(() => {
+    //     // sliceByPrice()
+    //     dispatch({type: "SLICE_ITEMS", payload: priceRef.current.value})
+    // },[range])
 
 
     useEffect(() => {
         dispatch({ type: 'TOTAL' })
     }, [state.items])
 
-    return <AppContext.Provider value={{ ...state, clearCart, removeItem, addToCart, isMenuOpen, toggleClickHandler, increaseQuantity, decreaseQuantity, wishlistHandler, sortByPopularity, selectValue, selectRef, selectClickHandler, removeItemFromWishlist, wishlistRef, sliceByPrice, priceRef, range }}>
+    return <AppContext.Provider value={{ ...state, clearCart, removeItem, addToCart, isMenuOpen, toggleClickHandler, increaseQuantity, decreaseQuantity, wishlistHandler, sortByPopularity, selectValue, selectRef, selectClickHandler, removeItemFromWishlist, wishlistRef, sliceByPrice, priceRef, range, selectCategory }}>
         {children}
     </AppContext.Provider>
 }

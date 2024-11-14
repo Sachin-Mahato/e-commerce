@@ -1,9 +1,28 @@
+import { useEffect, useState } from "react"
 import useGlobalContext from "../../context/globalContext"
 import { HeartIcon } from "../../img/icons/index.js"
 import BuyButton from "./BuyButton.jsx"
 
 function Products() {
-    var { cart, loading } = useGlobalContext()
+    var { loading } = useGlobalContext()
+    var [listProducts, setListProducts] = useState([]);
+
+
+    useEffect(() => {
+         ;(async () => {
+            const url = 'https://fakestoreapi.com/products?limit=8'
+            try {
+                let response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`error in getting response ${response}`)
+                }
+                let data = await response.json();
+                setListProducts(data)
+            } catch (error) {
+                console.log(`error in fetching Homepage products: ${error}`)
+            }
+        })()
+    }, [])
 
     if (loading) {
         return <p>Loading products...</p>; // Loading state
@@ -11,8 +30,8 @@ function Products() {
 
     return (
         <section className="grid grid-cols-2 place-items-center desktop:grid-cols-4 gap-4 mt-[7.5em] mb-10 desktop:mx-40">
-            {cart?.length > 0 ? (
-                cart.slice(0, 8).map((item, idx) => (
+            {listProducts?.length > 0 ? (
+                listProducts.map((item, idx) => (
 
                     <div key={idx} className="flex flex-col justify-around items-center desktop:justify-stretch  w-[162px] h-[352px] desktop:h-full  bg-[#F6F6F6] desktop:w-full desktop:rounded-lg">
                         <div className="w-full h-full flex justify-end mr-4 cursor-pointer">

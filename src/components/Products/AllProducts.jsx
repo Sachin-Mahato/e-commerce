@@ -1,4 +1,4 @@
-import {   useState } from "react";
+import { useState } from "react";
 import useGlobalContext from "../../context/globalContext.jsx"
 import { HeartIcon } from "../../img/icons/index.js"
 import BuyButton from "./BuyButton.jsx"
@@ -7,18 +7,17 @@ import ByRatingButton from "./ByRatingButton.jsx";
 import { ChevronDownIcon } from "../../img/icons/index.js";
 
 function AllProducts() {
-    var {range, priceRef, cart, sliceByPrice } = useGlobalContext();
+    var { priceRef, cart, sliceByPrice, selectCategory } = useGlobalContext();
     var [toggle, setToggle] = useState(false);
+    var [cateToggle, setCatToggle] = useState(false)
 
     function toggleClickHandler() {
         setToggle((prev) => !prev)
     }
 
-
-
-
-
-
+    function cateToggleClickHandler() {
+        setCatToggle((prev) => !prev)
+    }
 
     return (
         <article className="desktop:mb-8 desktop:mx-40">
@@ -38,30 +37,133 @@ function AllProducts() {
                             </div>
                         </div>
                         {toggle && (
-                            <form action="" >
-                                <div className="flex gap-4 items-center">
-                                    <label className="">{range}</label>
-                                    <input
-                                        ref={priceRef}
-                                        type="range"
-                                        min="5"
-                                        max="200"
-                                        onChange={sliceByPrice}
-                                        value={range}
-                                        className="w-24 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                                </div>
+                            <form className="space-y-4 mt-4">
+                                <section className="flex flex-col gap-4">
+                                    {/* Show All Items */}
+                                    <div className="flex items-center gap-2">
+                                        <input
+                                            type="radio"
+                                            id="rangeAll"
+                                            name="priceRange"
+                                            value="all"
+                                            ref={priceRef}
+                                            onChange={sliceByPrice} // This will dispatch the action to show all items
+                                            defaultChecked
+                                            className="h-6 w-6 border-2 border-gray-300 rounded-full text-blue-500 focus:ring-2 focus:ring-blue-400"
+                                        />
+                                        <label htmlFor="rangeAll" className="text-lg font-semibold"> Show All </label>
+                                    </div>
+
+                                    {/* $5 - $20 Range */}
+                                    <div className="flex items-center gap-2">
+                                        <input
+                                            type="radio"
+                                            id="range1"
+                                            name="priceRange"
+                                            value="20"
+                                            ref={priceRef}
+                                            onChange={sliceByPrice}
+                                            className="h-6 w-6 border-2 border-gray-300 rounded-full text-blue-500 focus:ring-2 focus:ring-blue-400"
+                                        />
+                                        <label htmlFor="range1" className="text-lg font-semibold"> $5 - $20 </label>
+                                    </div>
+
+                                    {/* $20 - $40 Range */}
+                                    <div className="flex items-center gap-2">
+                                        <input
+                                            type="radio"
+                                            id="range2"
+                                            name="priceRange"
+                                            value="40"
+                                            ref={priceRef}
+                                            onChange={sliceByPrice}
+                                            className="h-6 w-6 border-2 border-gray-300 rounded-full text-blue-500 focus:ring-2 focus:ring-blue-400"
+                                        />
+                                        <label htmlFor="range2" className="text-lg font-semibold"> $20 - $40 </label>
+                                    </div>
+
+                                    {/* $40 - $60 Range */}
+                                    <div className="flex items-center gap-2">
+                                        <input
+                                            type="radio"
+                                            id="range3"
+                                            name="priceRange"
+                                            value="60"
+                                            ref={priceRef}
+                                            onChange={sliceByPrice}
+                                            className="h-6 w-6 border-2 border-gray-300 rounded-full text-blue-500 focus:ring-2 focus:ring-blue-400"
+                                        />
+                                        <label htmlFor="range3" className="text-lg font-semibold"> $40 - $60 </label>
+                                    </div>
+
+                                    {/* Above $60 Range */}
+                                    <div className="flex items-center gap-2">
+                                        <input
+                                            type="radio"
+                                            id="range4"
+                                            name="priceRange"
+                                            value="1000"
+                                            ref={priceRef}
+                                            onChange={sliceByPrice}
+                                            className="h-6 w-6 border-2 border-gray-300 rounded-full text-blue-500 focus:ring-2 focus:ring-blue-400"
+                                        />
+                                        <label htmlFor="range4" className="text-lg font-semibold"> Above $60 </label>
+                                    </div>
+                                </section>
                             </form>
+
+
+
                         )}
 
                     </div>
-                    <div className="desktop:w-full desktop:flex desktop:gap-4">
-                        <p className="capitalize font-semibold">
+                    <div className="desktop:w-full desktop:flex desktop:flex-col desktop:gap-4">
+                        <div className="desktop:flex desktop:gap-4">
 
-                            category
-                        </p>
-                        <div>
-                            <ChevronDownIcon />
+                            <p className="capitalize font-semibold">
+
+                                category
+                            </p>
+                            <div className="cursor-pointer" onClick={cateToggleClickHandler}>
+                                <ChevronDownIcon />
+                            </div>
                         </div>
+                        {(cateToggle &&
+
+                            <section className="">
+                                <div className="grid sm:grid-cols-5 gap-4">
+                                    {/* All Category */}
+                                    <div className="flex flex-col items-start" onClick={selectCategory}>
+                                        <p className="text-sm font-semibold text-gray-800">All</p>
+                                    </div>
+
+                                    {/* Electronics Category */}
+                                    <div className="flex flex-col items-start" onClick={selectCategory}>
+                                        <p className="text-sm font-semibold text-gray-800">Electronics</p>
+                                    </div>
+
+                                    {/* Jewelry Category */}
+                                    <div className="flex flex-col items-start" onClick={selectCategory}>
+                                        <p className="text-sm font-semibold text-gray-800">Jewelery</p>
+                                    </div>
+
+                                    {/* Men's Clothing Category */}
+                                    <div className="flex flex-col items-start" onClick={selectCategory}>
+                                        <p className="text-sm font-semibold text-gray-800">Men&apos;s Clothing</p>
+                                    </div>
+
+                                    {/* Women's Clothing Category */}
+                                    <div className="flex flex-col items-start" onClick={selectCategory}>
+                                        <p className="text-sm font-semibold text-gray-800">Women&apos;s Clothing</p>
+                                    </div>
+                                </div>
+                            </section>
+
+                        )
+                        }
+
+
+
                     </div>
 
                 </div>

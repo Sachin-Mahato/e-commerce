@@ -6,11 +6,11 @@
  */
 function reducer(state, action) {
     // remove all items from the cart
-    if (action.type === "CLEAR_CART") {
+    if (action.type == "CLEAR_CART") {
         return { ...state, cart: [] };
     }
     // remove single item
-    if (action.type === "REMOVE") {
+    if (action.type == "REMOVE") {
         return {
             ...state,
             items: state.items.filter((item) => item.id !== action.payload),
@@ -24,7 +24,7 @@ function reducer(state, action) {
         }
     }
     // Add to cart
-    if (action.type === "ADD_TO_CART") {
+    if (action.type == "ADD_TO_CART") {
         let findItem = state["cart"]?.find((item) => {
             item["quantity"] = 1;
             if (item.id == action.payload) {
@@ -42,7 +42,7 @@ function reducer(state, action) {
         return state;
     }
     // Increase Quantity
-    if (action.type === "INCREASE_QUANTITY") {
+    if (action.type == "INCREASE_QUANTITY") {
         let temp = state.items.map((item) => {
             if (item.id == action.payload) {
                 return { ...item, quantity: item.quantity + 1 };
@@ -140,9 +140,45 @@ function reducer(state, action) {
     // slice item by price 
 
     if (action.type == "SLICE_ITEMS") {
-        let sliceItems = state.cart.filter((item) => item.price >= action.payload)
-        console.log(sliceItems)
+        let filterItems = state.filterAllItems.filter((item) => {
+            let price = Number(action.payload)
 
+            if (price == 20) {
+                return item.price >= 5 && item.price <= 20;
+            } else if (price == 40) {
+                return item.price >= 20 && item.price <= 40;
+            } else if (price == 60) {
+                return item.price > 40 && item.price <= 60
+            } else if (price == 1000) {
+                return item.price > 61 && item.price <= 1000;
+            }
+
+            return true;
+        });
+        return {
+            ...state,
+            cart: filterItems,
+        }
+
+    }
+    // filter items by category
+
+    if (action.type == "SELECT_CATEGORY") {
+        let filterCate;
+        if (action.payload.toLowerCase() == "all") {
+            filterCate = state.filterCategory;
+        } else {
+
+            filterCate = state.filterCategory.filter((item) => {
+               return item.category.toLowerCase() == action.payload.toLowerCase();
+            })
+
+        }
+
+        return {
+            ...state,
+            cart: filterCate,
+        }
     }
 
     return state;
