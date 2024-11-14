@@ -1,10 +1,10 @@
-import { Logo } from "./Logo"
-import HamburgerMenu from "./HamburgerMenu"
-import Searchbar from "./Searchbar";
+import { Logo } from "./Logo.jsx"
+import HamburgerMenu from "./HamburgerMenu.jsx"
+import Searchbar from "./Searchbar.jsx";
 import Home from "./Home";
 import About from "./About";
 import Contact from "./Contact";
-import { CartIcon, HeartIcon, UserIcon } from "../../img/icons";
+import { CartIcon, HeartIcon, UserIcon } from "../../img/icons/index.js";
 import { Link } from "react-router-dom";
 
 function Header() {

@@ -1,7 +1,7 @@
-import FooterLogo from "./FooterLogo"
-import Services from "./Services"
+import FooterLogo from "./FooterLogo.jsx"
+import Services from "./Services.jsx"
 import { SocialMedia } from "../../img/icons/index.js"
-import Assistance from "./Assistance"
+import Assistance from "./Assistance.jsx"
 
 function Footer() {
     return (

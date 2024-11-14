@@ -1,6 +1,6 @@
 import { Arrow } from "../../img/icons/index.js"
-import { CategoryTitle } from "./CategoryTitle"
-import CategoryIcons from "./CategoryIcons"
+import { CategoryTitle } from "./CategoryTitle.jsx"
+import CategoryIcons from "./CategoryIcons.jsx"
 
 function Category(){
     return (

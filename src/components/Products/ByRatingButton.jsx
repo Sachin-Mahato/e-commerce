@@ -1,4 +1,4 @@
-import useGlobalContext from "../../context/globalContext";
+import useGlobalContext from "../../context/globalContext.jsx";
 
 function ByRatingButton() {
     var { sortByPopularity, selectRef, selectClickHandler } = useGlobalContext();

@@ -1,6 +1,6 @@
-import useGlobalContext from "../../context/globalContext";
-import id from "../../utils/generateRandomString";
-import { Trash } from "../../img/icons";
+import useGlobalContext from "../../context/globalContext.jsx";
+import id from "../../utils/generateRandomString.js";
+import { Trash } from "../../img/icons/index.js";
 import { Link } from "react-router-dom";
 
 function Wishlist() {

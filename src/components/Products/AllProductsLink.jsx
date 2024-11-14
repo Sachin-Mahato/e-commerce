@@ -1,4 +1,4 @@
-import useGlobalContext from "../../context/globalContext";
+import useGlobalContext from "../../context/globalContext.jsx";
 import { Link } from "react-router-dom";
 
 function AllProductsLink() {

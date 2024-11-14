@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import useGlobalContext from "../../context/globalContext"
+import useGlobalContext from "../../context/globalContext.jsx"
 import { HeartIcon } from "../../img/icons/index.js"
 import BuyButton from "./BuyButton.jsx"
 

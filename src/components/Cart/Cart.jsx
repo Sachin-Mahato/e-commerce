@@ -1,5 +1,5 @@
-import useGlobalContext from "../../context/globalContext"
-import id from "../../utils/generateRandomString";
+import useGlobalContext from "../../context/globalContext.jsx"
+import id from "../../utils/generateRandomString.js";
 import randomNumbers from "../../utils/randomNumbers.js"
 import {Minus, Plus, Close} from "../../img/icons/index.js";
 
