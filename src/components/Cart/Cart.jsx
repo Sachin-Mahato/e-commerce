@@ -6,7 +6,6 @@ import {Minus, Plus, Close} from "../../img/icons/index.js";
 function Cart() {
     var { cart } = useGlobalContext();
     let orderId =  randomNumbers();
-    console.log(cart)
     return (
         <>
             <section className="flex flex-col gap-4 justify-around">

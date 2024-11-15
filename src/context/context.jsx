@@ -82,14 +82,7 @@ function AppContextProvider({ children }) {
             dispatch({ type: SELECT_CATEGORY, payload: selectCate })
         }
     }
-    // extract min and max price
 
-
-
-    // useEffect(() => {
-    //     // sliceByPrice()
-    //     dispatch({type: "SLICE_ITEMS", payload: priceRef.current.value})
-    // },[range])
 
     useEffect(() => {
         ; (async () => {

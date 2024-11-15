@@ -4,7 +4,7 @@ import Searchbar from "./Searchbar.jsx";
 import Home from "./Home";
 import About from "./About";
 import Contact from "./Contact";
-import { CartIcon, HeartIcon, UserIcon } from "../../img/icons/index.js";
+import {   UserIcon } from "../../img/icons/index.js";
 import { Link } from "react-router-dom";
 
 function Header() {

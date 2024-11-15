@@ -172,7 +172,6 @@ function reducer(state, action) {
     // slice item by price 
 
     if (action.type == SLICE_ITEMS) {
-        console.log(state)
         let filterItems = state.filterItemsByPrice.filter((item) => {
             let price = Number(action.payload)
 
