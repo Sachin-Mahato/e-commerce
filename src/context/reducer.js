@@ -3,47 +3,79 @@
  * @param {Object} state
  * @param {Object} action
  * @returns  {Object}
+ * 
  */
+import { FETCH_PRODUCTS_START, FETCH_PRODUCTS_SUCCESS, FETCH_PRODUCTS_ERROR, CLEAR_CART, REMOVE, REMOVE_ITEM_WISHLIST, ADD_TO_CART, INCREASE_QUANTITY, DECREASE_QUANTITY, TOTAL, WISHLIST, POPULARITY_SORT, SLICE_ITEMS, SELECT_CATEGORY, All } from "./actionTypes.js";
+
 function reducer(state, action) {
+
+    if (action.type == FETCH_PRODUCTS_START) {
+        return {
+            ...state,
+            loading:action.payload.loading,
+            error:action.payload.error
+        }
+    }
+
+    if (action.type == FETCH_PRODUCTS_SUCCESS) {
+        return {
+            ...state,
+            loading: action.payload.loading,
+            products: action.payload.products,
+            filterItemsByPrice: action.payload.filterItemsByPrice,
+            filterCategory: action.payload.filterCategory,
+            error: action.payload.error
+        }
+    }
+
+    if (action.type == FETCH_PRODUCTS_ERROR) {
+        return {
+            ...state,
+            loading: action.payload.loading,
+            error: action.payload.error,
+            products: action.payload.products
+        }
+    }
     // remove all items from the cart
-    if (action.type == "CLEAR_CART") {
+    if (action.type == CLEAR_CART) {
         return { ...state, cart: [] };
     }
     // remove single item
-    if (action.type == "REMOVE") {
+    if (action.type == REMOVE) {
         return {
             ...state,
-            items: state.items.filter((item) => item.id !== action.payload),
+            cart: state.cart.filter((item) => item.id !== action.payload),
         };
     }
     // remove item from wishlist
-    if (action.type == "REMOVE_ITEM_WISHLIST") {
+    if (action.type == REMOVE_ITEM_WISHLIST) {
         return {
             ...state,
             wishlist: state.wishlist.filter((item) => item.id != action.payload)
         }
     }
     // Add to cart
-    if (action.type == "ADD_TO_CART") {
-        let findItem = state["cart"]?.find((item) => {
+    if (action.type == ADD_TO_CART) {
+        let findItem = state["products"]?.find((item) => {
             item["quantity"] = 1;
             if (item.id == action.payload) {
                 return item;
             }
         });
 
+
         if (findItem) {
             return {
                 ...state,
-                cart: [...state["cart"]],
-                items: [...state["items"], findItem],
+                products: [...state["products"]],
+                cart: [...state["cart"], findItem],
             };
         }
         return state;
     }
     // Increase Quantity
-    if (action.type == "INCREASE_QUANTITY") {
-        let temp = state.items.map((item) => {
+    if (action.type == INCREASE_QUANTITY) {
+        let temp = state.cart.map((item) => {
             if (item.id == action.payload) {
                 return { ...item, quantity: item.quantity + 1 };
             }
@@ -52,13 +84,13 @@ function reducer(state, action) {
 
         return {
             ...state,
-            cart: [...state["cart"]],
-            items: [...temp],
+            products: [...state["products"]],
+            cart: [...temp],
         };
     }
     // Decrease Quantity
-    if (action.type == "DECREASE_QUANTITY") {
-        let temp = state.items
+    if (action.type == DECREASE_QUANTITY) {
+        let temp = state.cart
             .map((item) => {
                 if (item.id == action.payload) {
                     return { ...item, quantity: item.quantity - 1 };
@@ -69,13 +101,13 @@ function reducer(state, action) {
 
         return {
             ...state,
-            cart: [...state["cart"]],
-            items: [...temp],
+            products: [...state["products"]],
+            cart: [...temp],
         };
     }
     // Total Amount
-    if (action.type == "TOTAL") {
-        let { total, quantity } = state.items.reduce(
+    if (action.type == TOTAL) {
+        let { total, quantity } = state.cart.reduce(
             (acc, currItem) => {
                 const { price, quantity } = currItem;
                 const itemTotal = price * quantity;
@@ -100,8 +132,8 @@ function reducer(state, action) {
 
     // Wishlist
 
-    if (action.type == "WISHLIST") {
-        let findWishlistItems = state["cart"].find((item) => {
+    if (action.type == WISHLIST) {
+        let findWishlistItems = state["products"].find((item) => {
             if (item.id == action.payload) {
                 return item;
             }
@@ -110,7 +142,7 @@ function reducer(state, action) {
         if (findWishlistItems) {
             return {
                 ...state,
-                cart: [...state["cart"]],
+                products: [...state["products"]],
                 wishlist: [...state["wishlist"], findWishlistItems],
             };
         }
@@ -120,27 +152,28 @@ function reducer(state, action) {
 
     // sort by popularity
 
-    if (action.type == "POPULARITY_SORT") {
+    if (action.type == POPULARITY_SORT) {
         if (action.payload == "popularity") {
-            state["cart"].sort((x, y) => y.rating?.rate - x.rating?.rate)
+            state["products"].sort((x, y) => y.rating?.rate - x.rating?.rate)
         }
         if (action.payload == "relevance") {
-            state["cart"].sort((x, y) => x.rating?.rate - y.rating?.rate)
+            state["products"].sort((x, y) => x.rating?.rate - y.rating?.rate)
         }
         if (action.payload == "") {
-            state["cart"].sort((x, y) => x.rating?.rate - y.rating?.rate)
+            state["products"].sort((x, y) => x.rating?.rate - y.rating?.rate)
         }
         if (action.payload == "low-to-high") {
-            state["cart"].sort((x, y) => x.price - y.price)
+            state["products"].sort((x, y) => x.price - y.price)
         }
         if (action.payload == "high-to-low") {
-            state["cart"].sort((x, y) => y.price - x.price)
+            state["products"].sort((x, y) => y.price - x.price)
         }
     }
     // slice item by price 
 
-    if (action.type == "SLICE_ITEMS") {
-        let filterItems = state.filterAllItems.filter((item) => {
+    if (action.type == SLICE_ITEMS) {
+        console.log(state)
+        let filterItems = state.filterItemsByPrice.filter((item) => {
             let price = Number(action.payload)
 
             if (price == 20) {
@@ -157,15 +190,15 @@ function reducer(state, action) {
         });
         return {
             ...state,
-            cart: filterItems,
+            products: filterItems,
         }
 
     }
     // filter items by category
 
-    if (action.type == "SELECT_CATEGORY") {
+    if (action.type == SELECT_CATEGORY) {
         let filterCate;
-        if (action.payload.toLowerCase() == "all") {
+        if (action.payload.toLowerCase() == All) {
             filterCate = state.filterCategory;
         } else {
 
@@ -177,7 +210,7 @@ function reducer(state, action) {
 
         return {
             ...state,
-            cart: filterCate,
+            products: filterCate,
         }
     }
 

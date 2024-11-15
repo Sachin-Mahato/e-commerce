@@ -1,17 +1,18 @@
 import { createContext, useEffect, useReducer, useRef, useState } from "react";
 import reducer from "./reducer.js";
 import fetchAllProducts from "../service/fetchData.js";
-
+import { FETCH_PRODUCTS_ERROR, FETCH_PRODUCTS_START, FETCH_PRODUCTS_SUCCESS, TOTAL, CLEAR_CART, REMOVE, REMOVE_ITEM_WISHLIST, ADD_TO_CART, INCREASE_QUANTITY,  WISHLIST, POPULARITY_SORT, SLICE_ITEMS, All, SELECT_CATEGORY, DECREASE_QUANTITY } from "./actionTypes.js";
 
 var AppContext = createContext();
 
 var initialState = {
     loading: false,
-    cart: (async () => await fetchAllProducts())(),
-    items: [],
+    products: [],
+    error: null,
+    cart: [],
     wishlist: [],
-    filterAllItems:(async () => await fetchAllProducts())(),
-    filterCategory: (async () => await fetchAllProducts())(),
+    filterItemsByPrice: [],
+    filterCategory: [],
     total: 0,
     quantity: 0
 }
@@ -26,28 +27,28 @@ function AppContextProvider({ children }) {
     var priceRef = useRef(5)
 
     function clearCart() {
-        dispatch({ type: 'CLEAR_CART' })
+        dispatch({ type: CLEAR_CART})
     }
 
     function removeItem(id) {
-        dispatch({ type: 'REMOVE', payload: id })
+        dispatch({ type: REMOVE, payload: id })
     }
 
     function removeItemFromWishlist(id) {
-        dispatch({ type: 'REMOVE_ITEM_WISHLIST', payload: id })
+        dispatch({ type: REMOVE_ITEM_WISHLIST, payload: id })
     }
 
     function addToCart(id) {
-        dispatch({ type: 'ADD_TO_CART', payload: id })
+        dispatch({ type: ADD_TO_CART, payload: id })
 
     }
 
     function increaseQuantity(id) {
-        dispatch({ type: 'INCREASE_QUANTITY', payload: id })
+        dispatch({ type: INCREASE_QUANTITY, payload: id })
     }
 
     function decreaseQuantity(id) {
-        dispatch({ type: 'DECREASE_QUANTITY', payload: id })
+        dispatch({ type: DECREASE_QUANTITY , payload: id })
     }
 
     function toggleClickHandler() {
@@ -55,11 +56,11 @@ function AppContextProvider({ children }) {
     }
 
     function wishlistHandler(id) {
-        dispatch({ type: "WISHLIST", payload: id })
+        dispatch({ type: WISHLIST, payload: id })
     }
 
     function sortByPopularity(value) {
-        dispatch({ type: "POPULARITY_SORT", payload: value })
+        dispatch({ type:POPULARITY_SORT, payload: value })
     }
 
     function selectClickHandler() {
@@ -69,16 +70,16 @@ function AppContextProvider({ children }) {
     function sliceByPrice(evt) {
         var selectVal = evt.target.value;
         setRange(selectVal)
-        dispatch({ type: "SLICE_ITEMS", payload: selectVal })
+        dispatch({ type: SLICE_ITEMS, payload: selectVal })
     }
 
     function selectCategory(evt) {
         var selectCate = evt.target.textContent.trim().toLowerCase();
-        if (selectCate == "all") {
-            dispatch({ type: "SELECT_CATEGORY", payload: "all" })
+        if (selectCate == All) {
+            dispatch({ type: SELECT_CATEGORY, payload: All})
         } else {
 
-            dispatch({ type: "SELECT_CATEGORY", payload: selectCate })
+            dispatch({ type: SELECT_CATEGORY, payload: selectCate })
         }
     }
     // extract min and max price
@@ -90,10 +91,40 @@ function AppContextProvider({ children }) {
     //     dispatch({type: "SLICE_ITEMS", payload: priceRef.current.value})
     // },[range])
 
+    useEffect(() => {
+        ; (async () => {
+            dispatch({
+                type: FETCH_PRODUCTS_START, payload: {
+                    loading: true,
+                    error: null,
+                }
+            })
+            try {
+                const getAllProducts = await fetchAllProducts()
+                dispatch({
+                    type: FETCH_PRODUCTS_SUCCESS, payload: {
+                        loading: false,
+                        error: null,
+                        products: getAllProducts,
+                        filterItemsByPrice: getAllProducts,
+                        filterCategory: getAllProducts,
+                    }
+                })
+            } catch (error) {
+                dispatch({
+                    type: FETCH_PRODUCTS_ERROR, payload: {
+                        loading: false, error: error.message, products: []
+                    }
+                })
+                console.error(`error in fetching all products ${error.message}`)
+            }
+        })()
+    }, [])
+
 
     useEffect(() => {
-        dispatch({ type: 'TOTAL' })
-    }, [state.items])
+        dispatch({ type: TOTAL })
+    }, [state.cart])
 
     return <AppContext.Provider value={{ ...state, clearCart, removeItem, addToCart, isMenuOpen, toggleClickHandler, increaseQuantity, decreaseQuantity, wishlistHandler, sortByPopularity, selectValue, selectRef, selectClickHandler, removeItemFromWishlist, wishlistRef, sliceByPrice, priceRef, range, selectCategory }}>
         {children}

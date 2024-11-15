@@ -12,13 +12,11 @@ function HeartIcon({ itemId }) {
             wishlistHandler(itemId);
             wishlistRef.current.style.stroke = "red";
             wishlistRef.current.style.fill = "red";
-            console.log('hello from inside of if')
         } else {
             setIsTrue(false)
             removeItemFromWishlist(itemId);
             wishlistRef.current.style.stroke = "";
             wishlistRef.current.style.fill = "";
-            console.log('hello from else if');
         }
     }
 

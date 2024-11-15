@@ -4,14 +4,15 @@ import randomNumbers from "../../utils/randomNumbers.js"
 import {Minus, Plus, Close} from "../../img/icons/index.js";
 
 function Cart() {
-    var { items } = useGlobalContext();
+    var { cart } = useGlobalContext();
     let orderId =  randomNumbers();
+    console.log(cart)
     return (
         <>
             <section className="flex flex-col gap-4 justify-around">
                 <h2 className="capitalize font-semibold text-2xl ml-4 mb-6">shopping cart</h2>
-                {items?.length > 0 ? (
-                    items.map((item) => (
+                {cart?.length > 0 ? (
+                    cart.map((item) => (
                         <div key={id()} className="flex gap-4 justify-around items-center">
                             <div>
                                 <img className="w-16 h-16" src={item.image} alt={item.title} />
