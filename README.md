@@ -24,7 +24,7 @@ Follow these steps to run the project on your computer:
 
 1. **Clone the repository**:  
    ```bash
-   git clone https://github.com/your-username/cart-craze.git  
+   git clone https://github.com/Sachin-Mahato/e-commerce.git
 2. **Go to the project folder**:
     ```bash
     cd cart-craze  
