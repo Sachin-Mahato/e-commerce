@@ -12,7 +12,6 @@ function ByRatingButton() {
                 onChange={(e) => {
                     e.preventDefault();
                     selectClickHandler();
-                    // console.log(selectRef.current.value)
                     sortByPopularity(selectRef.current.value);
 
                 }}>

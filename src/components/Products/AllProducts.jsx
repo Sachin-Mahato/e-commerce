@@ -14,13 +14,13 @@ function AllProducts() {
                 <FilterButton />
                 <ByRatingButton />
             </div>
-            <article className="grid grid-cols-10-90 gap-8">
+            <article className="grid desktop:grid-cols-10-90 desktop:gap-8">
                 <div className="w-64 flex flex-col gap-8">
                     <PriceFilter />
                     <CategoryFilter />
                 </div>
                 <div>
-                    <div className="flex justify-end items-center">
+                    <div className="hidden desktop:flex justify-end items-center">
 
                         <ByRatingButton />
                     </div>

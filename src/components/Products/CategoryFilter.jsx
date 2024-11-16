@@ -9,7 +9,7 @@ function CategoryFilter() {
         setCatToggle((prev) => !prev)
     }
     return (
-        <div className="desktop:w-full desktop:flex desktop:flex-col desktop:gap-4">
+        <div className="hidden desktop:w-full desktop:flex desktop:flex-col desktop:gap-4">
             <div className="desktop:flex desktop:gap-4">
 
                 <p className="capitalize font-semibold">

@@ -10,7 +10,7 @@ export default function PriceFilter() {
         setToggle((prev) => !prev)
     }
     return (
-        <div>
+        <div className="hidden desktop:block">
 
             <div className="w-full flex gap-12">
                 <p className=" capitalize font-semibold">price</p>
