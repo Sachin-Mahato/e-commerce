@@ -1,52 +1,17 @@
 import { Route, Routes } from "react-router-dom"
-import { Header, Category, Products, Footer, Cart, OrderSummary, Wishlist, AllProducts } from "./components/index.js"
-import FilterByPrice from "./components/Products/FilterByPrice.jsx"
-
+import {HomePage, CartPage, WishlistPage, ProductsPage, FilteredProductsPage} from "./pages/index.js"
 function App() {
     return (
         <Routes>
-            <Route path="/" element={
-                <>
+            <Route path="/" element={<HomePage />} />
 
-                    <Header />
-                    <Category />
-                    <Products />
-                    <Footer />
-                </>
-            }
-            />
+            <Route path="/cart" element={<CartPage />} />
 
-            <Route path="/cart" element={
-                <>
-                    <Header />
-                    <Cart />
-                    <OrderSummary />
-                    <Footer />
-                </>
-            } />
+            <Route path="/wishlist" element={<WishlistPage />} />
 
-            <Route path="/wishlist" element={
-                <>
-                    <Header />
-                    <Wishlist />
-                    <Footer />
-                </>
-            } />
+            <Route path="/products" element={<ProductsPage />} />
 
-            <Route path="/products" element={
-                <>
-                    <Header />
-                    <AllProducts />
-                    <Footer />
-                </>
-            } />
-
-            <Route path="/products/:filter" element={<>
-
-                <Header />
-                <FilterByPrice />
-                <Footer />
-            </>} />
+            <Route path="/products/:filter" element={<FilteredProductsPage />} />
 
         </Routes>
     )
