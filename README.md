@@ -33,7 +33,7 @@ Follow these steps to run the project on your computer:
     bun install  
 4. **Start the project**:
     ```bash
-    bun dev 
+    bun run dev 
 5. Open http://localhost:5173 in your browser.
 
 ## Contributions
