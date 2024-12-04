@@ -63,7 +63,7 @@ function AppContextProvider({ children }) {
         dispatch({ type:POPULARITY_SORT, payload: value })
     }
 
-    function selectClickHandler() {
+    function selectClickHandler(selectRef) {
         setSelectValue(selectRef.current.value)
     }
 

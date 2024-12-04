@@ -3,7 +3,7 @@ import { HeartIcon } from "../../img/icons/index.js"
 
 export default function ProductsList({idx, item}) {
     return (
-        <div key={idx} className="flex flex-col justify-around items-center desktop:w-[60%]  w-[162px] h-[352px] bg-[#F6F6F6] desktop:h-[400]">
+        <div key={idx} className="flex flex-col justify-around items-center desktop:w-full  w-[162px] h-[352px] bg-[#F6F6F6] desktop:h-[400]">
             <div className="w-full flex justify-end mr-4 cursor-pointer">
                 <HeartIcon itemId={item.id} />
             </div>
@@ -14,7 +14,7 @@ export default function ProductsList({idx, item}) {
             ) : (
                 <p>No image available</p>
             )}
-            <p>{item.title}</p>
+            <p className="desktop:text-center">{item.title}</p>
             <p>${item.price}</p>
             <div>
 

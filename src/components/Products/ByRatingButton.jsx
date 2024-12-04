@@ -3,6 +3,16 @@ import useGlobalContext from "../../context/globalContext.jsx";
 function ByRatingButton() {
     var { sortByPopularity, selectRef, selectClickHandler } = useGlobalContext();
 
+    function handleSelectChange() {
+        if (selectRef.current) {
+            console.log(`selectRef: ${selectRef.current.value}`);
+            selectClickHandler(selectRef);
+            sortByPopularity(selectRef.current.value);
+        } else {
+            console.log(`error in ${selectRef}`)
+        }
+    }
+
     return (
         <div className="flex justify-around py-2 rounded-md border-[#ebebeb] border-[1px] border-solid">
             <p className="font-semibold ">By rating</p>
@@ -10,9 +20,10 @@ function ByRatingButton() {
             <select
                 ref={selectRef}
                 onChange={(e) => {
-                    e.preventDefault();
-                    selectClickHandler();
-                    sortByPopularity(selectRef.current.value);
+                    e.stopPropagation();
+                    // selectClickHandler(selectRef);
+                    // sortByPopularity(selectRef.current.value);
+                    handleSelectChange()
 
                 }}>
                 <option value="">please select </option>
