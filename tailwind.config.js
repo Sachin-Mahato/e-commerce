@@ -4,7 +4,7 @@ export default {
         "./src/**/*.{js,ts,jsx,tsx}"],
     theme: {
         screens: {
-            desktop: '1440px'
+            desktop: '1280px'
         },
         extend: {
             transitionTimingFunction: {

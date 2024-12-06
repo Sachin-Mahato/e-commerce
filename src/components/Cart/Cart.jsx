@@ -1,11 +1,12 @@
-import useGlobalContext from "../../context/globalContext.jsx"
 import id from "../../utils/generateRandomString.js";
 import randomNumbers from "../../utils/randomNumbers.js"
 import {Minus, Plus, Close} from "../../img/icons/index.js";
 
 function Cart() {
-    var { cart } = useGlobalContext();
-    let orderId =  randomNumbers();
+    let cartData = localStorage.getItem("cart");
+    let cart = JSON.parse(cartData);
+    let orderId = randomNumbers();
+
     return (
         <>
             <section className="flex flex-col gap-4 justify-around">

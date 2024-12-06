@@ -1,7 +1,7 @@
-import useGlobalContext from "../../context/globalContext"
+import useCartContext from "../../context/useCartContext";
 
 const Close = ({itemId}) => {
-    const {removeItem} = useGlobalContext();
+    const {removeItem} = useCartContext();
     return (
         <div className="cursor-pointer" onClick={() => removeItem(itemId)}>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">

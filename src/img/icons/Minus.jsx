@@ -1,6 +1,7 @@
-import useGlobalContext from "../../context/globalContext"
+import useCartContext from "../../context/useCartContext";
+
 const Minus = ({itemId}) => {
-    const {decreaseQuantity} = useGlobalContext();
+    const {decreaseQuantity} = useCartContext();
     return (
         <div onClick={() => decreaseQuantity(itemId)} >
 

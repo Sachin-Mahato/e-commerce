@@ -1,7 +1,7 @@
 import { createContext, useEffect, useReducer, useRef, useState } from "react";
 import reducer from "./reducer.js";
 import fetchAllProducts from "../service/fetchData.js";
-import { FETCH_PRODUCTS_ERROR, FETCH_PRODUCTS_START, FETCH_PRODUCTS_SUCCESS, TOTAL, CLEAR_CART, REMOVE, REMOVE_ITEM_WISHLIST, ADD_TO_CART, INCREASE_QUANTITY,  WISHLIST, POPULARITY_SORT, SLICE_ITEMS, All, SELECT_CATEGORY, DECREASE_QUANTITY } from "./actionTypes.js";
+import { FETCH_PRODUCTS_ERROR, FETCH_PRODUCTS_START, FETCH_PRODUCTS_SUCCESS,REMOVE_ITEM_WISHLIST, WISHLIST, POPULARITY_SORT, SLICE_ITEMS, All, SELECT_CATEGORY} from "./actionTypes.js";
 
 var AppContext = createContext();
 
@@ -9,12 +9,9 @@ var initialState = {
     loading: false,
     products: [],
     error: null,
-    cart: [],
     wishlist: [],
     filterItemsByPrice: [],
     filterCategory: [],
-    total: 0,
-    quantity: 0
 }
 
 function AppContextProvider({ children }) {
@@ -26,29 +23,8 @@ function AppContextProvider({ children }) {
     var wishlistRef = useRef();
     var priceRef = useRef(5)
 
-    function clearCart() {
-        dispatch({ type: CLEAR_CART})
-    }
-
-    function removeItem(id) {
-        dispatch({ type: REMOVE, payload: id })
-    }
-
     function removeItemFromWishlist(id) {
         dispatch({ type: REMOVE_ITEM_WISHLIST, payload: id })
-    }
-
-    function addToCart(id) {
-        dispatch({ type: ADD_TO_CART, payload: id })
-
-    }
-
-    function increaseQuantity(id) {
-        dispatch({ type: INCREASE_QUANTITY, payload: id })
-    }
-
-    function decreaseQuantity(id) {
-        dispatch({ type: DECREASE_QUANTITY , payload: id })
     }
 
     function toggleClickHandler() {
@@ -115,16 +91,12 @@ function AppContextProvider({ children }) {
     }, [])
 
 
-    useEffect(() => {
-        dispatch({ type: TOTAL })
-    }, [state.cart])
 
-    return <AppContext.Provider value={{ ...state, clearCart, removeItem, addToCart, isMenuOpen, toggleClickHandler, increaseQuantity, decreaseQuantity, wishlistHandler, sortByPopularity, selectValue, selectRef, selectClickHandler, removeItemFromWishlist, wishlistRef, sliceByPrice, priceRef, range, selectCategory }}>
+
+    return <AppContext.Provider value={{ ...state,isMenuOpen, toggleClickHandler,wishlistHandler, sortByPopularity, selectValue, selectRef, selectClickHandler, removeItemFromWishlist, wishlistRef, sliceByPrice, priceRef, range, selectCategory }}>
         {children}
     </AppContext.Provider>
 }
-
-
 
 
 export { AppContext, AppContextProvider }

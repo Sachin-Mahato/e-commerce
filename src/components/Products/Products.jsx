@@ -48,7 +48,7 @@ function Products() {
                         <p>${item.price}</p>
                         <div className="mb-4">
 
-                            <BuyButton itemId={item.id} />
+                            <BuyButton itemId={item} />
                         </div>
                     </div>
                 ))

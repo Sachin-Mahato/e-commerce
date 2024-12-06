@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom"
 import {HomePage, CartPage, WishlistPage, ProductsPage, FilteredProductsPage} from "./pages/index.js"
+
 function App() {
     return (
         <Routes>
@@ -16,7 +17,5 @@ function App() {
         </Routes>
     )
 }
-
-
 
 export default App

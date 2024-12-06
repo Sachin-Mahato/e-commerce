@@ -18,7 +18,7 @@ export default function ProductsList({idx, item}) {
             <p>${item.price}</p>
             <div>
 
-                <BuyButton itemId={item.id} />
+                <BuyButton itemId={item} />
             </div>
         </div>
     )

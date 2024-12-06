@@ -1,8 +1,8 @@
-import useGlobalContext from "../../context/globalContext.jsx";
+import useCartContext from "../../context/useCartContext.jsx";
 
 function OderSummary() {
 
-    var {total} = useGlobalContext()
+    var {total} = useCartContext()
     const tax = (total * 1) / 100;
     const shippingCost = (total * 5) / 100;
     const totalCost = (tax+ shippingCost + total).toFixed(2);

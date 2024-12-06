@@ -5,7 +5,7 @@
  * @returns  {Object}
  * 
  */
-import { FETCH_PRODUCTS_START, FETCH_PRODUCTS_SUCCESS, FETCH_PRODUCTS_ERROR, CLEAR_CART, REMOVE, REMOVE_ITEM_WISHLIST, ADD_TO_CART, INCREASE_QUANTITY, DECREASE_QUANTITY, TOTAL, WISHLIST, POPULARITY_SORT, SLICE_ITEMS, SELECT_CATEGORY, All } from "./actionTypes.js";
+import { FETCH_PRODUCTS_START, FETCH_PRODUCTS_SUCCESS, FETCH_PRODUCTS_ERROR, REMOVE_ITEM_WISHLIST, ADD_TO_CART, WISHLIST, POPULARITY_SORT, SLICE_ITEMS, SELECT_CATEGORY, All } from "./actionTypes.js";
 
 function reducer(state, action) {
 
@@ -36,17 +36,8 @@ function reducer(state, action) {
             products: action.payload.products
         }
     }
-    // remove all items from the cart
-    if (action.type == CLEAR_CART) {
-        return { ...state, cart: [] };
-    }
-    // remove single item
-    if (action.type == REMOVE) {
-        return {
-            ...state,
-            cart: state.cart.filter((item) => item.id !== action.payload),
-        };
-    }
+
+
     // remove item from wishlist
     if (action.type == REMOVE_ITEM_WISHLIST) {
         return {
@@ -73,62 +64,7 @@ function reducer(state, action) {
         }
         return state;
     }
-    // Increase Quantity
-    if (action.type == INCREASE_QUANTITY) {
-        let temp = state.cart.map((item) => {
-            if (item.id == action.payload) {
-                return { ...item, quantity: item.quantity + 1 };
-            }
-            return item;
-        });
 
-        return {
-            ...state,
-            products: [...state["products"]],
-            cart: [...temp],
-        };
-    }
-    // Decrease Quantity
-    if (action.type == DECREASE_QUANTITY) {
-        let temp = state.cart
-            .map((item) => {
-                if (item.id == action.payload) {
-                    return { ...item, quantity: item.quantity - 1 };
-                }
-                return item;
-            })
-            .filter((item) => item.quantity !== 0);
-
-        return {
-            ...state,
-            products: [...state["products"]],
-            cart: [...temp],
-        };
-    }
-    // Total Amount
-    if (action.type == TOTAL) {
-        let { total, quantity } = state.cart.reduce(
-            (acc, currItem) => {
-                const { price, quantity } = currItem;
-                const itemTotal = price * quantity;
-                acc.total += itemTotal;
-                acc.quantity += quantity;
-                return acc;
-            },
-            {
-                total: 0,
-                quantity: 0,
-            }
-        );
-
-        total = parseFloat(total.toFixed(2));
-
-        return {
-            ...state,
-            total: total,
-            quantity: quantity,
-        };
-    }
 
     // Wishlist
 

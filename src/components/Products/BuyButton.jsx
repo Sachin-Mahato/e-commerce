@@ -1,7 +1,6 @@
-import useGlobalContext from "../../context/globalContext.jsx"
-
+import useCartContext from "../../context/useCartContext.jsx";
 function BuyButton({itemId}) {
-    var {addToCart} = useGlobalContext();
+    var {addToCart} = useCartContext();
 
     return (
         <>
